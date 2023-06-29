@@ -112,7 +112,7 @@ function check() {
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     `
-        window.history.pushState('new', 'title', '/funktionen.html');
+        window.history.pushState('new', 'title', '/funktionen');
         document.title = 'Funktionen | InstantLoad Test';
     }
 
@@ -188,7 +188,7 @@ function check() {
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     `
-        window.history.pushState('new', 'title', '/kontakt.html');
+        window.history.pushState('new', 'title', '/kontakt');
         document.title = 'Kontakt | InstantLoad Test';
     }
 
