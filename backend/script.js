@@ -7,7 +7,7 @@ function check() {
             link.rel = 'icon';
             document.head.appendChild(link);
         }
-        link.href = 'https://img.arion2000.xyz/r/opera_tV46BsJtvR.png';
+        link.href = 'https://img.arion2000.xyz/r/tV46BsJtvR.png';
     } else if (window.location.pathname == '/funktionen' || window.location.pathname == '/funktionen.html' || window.location.pathname == '/funktionen.php') {
         document.title = 'Funktionen | InstantLoad Test';
         var link = document.querySelector("link[rel~='icon']");
@@ -16,7 +16,7 @@ function check() {
             link.rel = 'icon';
             document.head.appendChild(link);
         }
-        link.href = 'https://img.arion2000.xyz/r/opera_tV46BsJtvR.png';
+        link.href = 'https://img.arion2000.xyz/r/tV46BsJtvR.png';
         loadFunktionenPage();
     } else if (window.location.pathname == '/kontakt' || window.location.pathname == '/kontakt.html' || window.location.pathname == '/kontakt.php') {
         document.title = 'Kontakt | InstantLoad Test';
@@ -26,7 +26,7 @@ function check() {
             link.rel = 'icon';
             document.head.appendChild(link);
         }
-        link.href = 'https://img.arion2000.xyz/r/opera_tV46BsJtvR.png';
+        link.href = 'https://img.arion2000.xyz/r/tV46BsJtvR.png';
         loadKontaktPage();
     }
 }
