@@ -1,3 +1,9 @@
+window.addEventListener('popstate', function (event) {
+    if (event.state) {
+        check();
+    }
+});
+
 function check() {
     if (window.location.pathname == '/' || window.location.pathname == '/index.html' || window.location.pathname == '/index' || window.location.pathname == 'index.php') {
         loadHomePage();
@@ -31,9 +37,8 @@ function check() {
     }
 }
 
-    function loadHomePage() {
-        document.title = 'Lade... | InstantLoad Test';
-        document.getElementById('body').innerHTML = `
+function loadHomePage() {
+    document.getElementById('body').innerHTML = `
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column form-group">
     <header class="mb-auto">
   <div>
@@ -59,18 +64,17 @@ function check() {
 
 <footer class="mt-auto text-white-50">
   <br>
-  <p class="fixed-bottom" style="cursor: pointer;" onclick="a2dataRef()">a2data</p>
+  <p class="fixed-bottom" style="cursor: pointer;" onclick="a2dataRef()">a2data - ${new Date().getFullYear()}</p>
 </footer>
 </div>
 <script src="./backend/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     `
-        window.history.pushState('new', 'title', '/');
-        document.title = 'Home | InstantLoad Test';
-    }
+    window.history.pushState({ page: 'home' }, 'Home | InstantLoad Test', '/');
+    document.title = 'Home | InstantLoad Test';
+}
 
-    function loadFunktionenPage() {
-        document.title = 'Lade... | InstantLoad Test';
-        document.getElementById('body').innerHTML = `
+function loadFunktionenPage() {
+    document.getElementById('body').innerHTML = `
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column form-group">
         <header class="mb-auto">
             <div>
@@ -105,20 +109,19 @@ function check() {
 
         <footer class="mt-auto text-white-50">
             <br>
-            <p class="fixed-bottom" style="cursor: pointer;" onclick="a2dataRef()">a2data</p>
+            <p class="fixed-bottom" style="cursor: pointer;" onclick="a2dataRef()">a2data - ${new Date().getFullYear()}</p>
         </footer>
     </div>
     <script src="./backend/bootstrap/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     `
-        window.history.pushState('new', 'title', '/funktionen');
-        document.title = 'Funktionen | InstantLoad Test';
-    }
+    window.history.pushState({ page: 'funktionen' }, 'Funktionen | InstantLoad Test', '/funktionen');
+    document.title = 'Funktionen | InstantLoad Test';
+}
 
-    function loadKontaktPage() {
-        document.title = 'Lade... | InstantLoad Test';
-        document.getElementById('body').innerHTML = `
+function loadKontaktPage() {
+    document.getElementById('body').innerHTML = `
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column form-group">
         <header class="mb-auto">
             <div>
@@ -181,18 +184,22 @@ function check() {
 
         <footer class="mt-auto text-white-50">
             <br>
-            <p class="fixed-bottom" style="cursor: pointer;" onclick="a2dataRef()">a2data</p>
+            <p class="fixed-bottom" style="cursor: pointer;" onclick="a2dataRef()">a2data - ${new Date().getFullYear()}</p>
         </footer>
     </div>
     <script src="./backend/bootstrap/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     `
-        window.history.pushState('new', 'title', '/kontakt');
-        document.title = 'Kontakt | InstantLoad Test';
-    }
+    window.history.pushState({ page: 'kontakt' }, 'Kontakt | InstantLoad Test', '/kontakt');
+    document.title = 'Kontakt | InstantLoad Test';
+}
 
-    function a2dataRef() {
-        const url = "https://www.arion2000.xyz";
-        window.open(url, "_blank");
-    }
+function a2dataRef() {
+    const url = "https://www.arion2000.xyz";
+    window.open(url, "_blank");
+}
+
+function resetHistory() {
+    window.history.go(-(window.history.length - 1));
+}
