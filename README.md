@@ -1,2 +1,2 @@
 # instantload
-I'm testing a system fast reloading of web pages.
+I'm testing a fast reloading system of web pages.
