@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function check() {
             link.rel = 'icon';
             document.head.appendChild(link);
         }
-        link.href = 'https://us-east-1.tixte.net/uploads/img.arion2000.xyz/tV46BsJtvR.png';
+        link.href = '/public/favicon.ico';
     } else if (window.location.pathname == '/funktionen' || window.location.pathname == '/funktionen.html' || window.location.pathname == '/funktionen.php') {
         document.title = 'Funktionen | InstantLoad Test';
         var link = document.querySelector("link[rel~='icon']");
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function check() {
             link.rel = 'icon';
             document.head.appendChild(link);
         }
-        link.href = 'https://us-east-1.tixte.net/uploads/img.arion2000.xyz/tV46BsJtvR.png';
+        link.href = '/public/favicon.ico';
         loadFunktionenPage();
     } else if (window.location.pathname == '/kontakt' || window.location.pathname == '/kontakt.html' || window.location.pathname == '/kontakt.php') {
         document.title = 'Kontakt | InstantLoad Test';
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function check() {
             link.rel = 'icon';
             document.head.appendChild(link);
         }
-        link.href = 'https://us-east-1.tixte.net/uploads/img.arion2000.xyz/tV46BsJtvR.png';
+        link.href = '/public/favicon.ico';
         loadKontaktPage();
     };
 });
