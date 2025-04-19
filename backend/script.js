@@ -1,43 +1,28 @@
 window.addEventListener('popstate', function (event) {
-    if (event.state) {
-        check();
-    };
+    const path = window.location.pathname;
+
+    if (path === '/' || path === '/index.html' || path === '/index' || path === '/index.php') {
+        loadHomePage(true);
+    } else if (path === '/funktionen' || path === '/funktionen.html' || path === '/funktionen.php') {
+        loadFunktionenPage(true);
+    } else if (path === '/kontakt' || path === '/kontakt.html' || path === '/kontakt.php') {
+        loadKontaktPage(true);
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function check() {
-    if (window.location.pathname == '/' || window.location.pathname == '/index.html' || window.location.pathname == '/index' || window.location.pathname == 'index.php') {
-        loadHomePage();
-        var link = document.querySelector("link[rel~='icon']");
-        if (!link) {
-            link = document.createElement('link');
-            link.rel = 'icon';
-            document.head.appendChild(link);
-        }
-        link.href = '/public/favicon.ico';
-    } else if (window.location.pathname == '/funktionen' || window.location.pathname == '/funktionen.html' || window.location.pathname == '/funktionen.php') {
-        document.title = 'Funktionen | InstantLoad Test';
-        var link = document.querySelector("link[rel~='icon']");
-        if (!link) {
-            link = document.createElement('link');
-            link.rel = 'icon';
-            document.head.appendChild(link);
-        }
-        link.href = '/public/favicon.ico';
-        loadFunktionenPage();
-    } else if (window.location.pathname == '/kontakt' || window.location.pathname == '/kontakt.html' || window.location.pathname == '/kontakt.php') {
-        document.title = 'Kontakt | InstantLoad Test';
-        var link = document.querySelector("link[rel~='icon']");
-        if (!link) {
-            link = document.createElement('link');
-            link.rel = 'icon';
-            document.head.appendChild(link);
-        }
-        link.href = '/public/favicon.ico';
-        loadKontaktPage();
-    };
+    const path = window.location.pathname;
+
+    if (path === '/' || path === '/index.html' || path === '/index' || path === '/index.php') {
+        loadHomePage(true);
+    } else if (path === '/funktionen' || path === '/funktionen.html' || path === '/funktionen.php') {
+        loadFunktionenPage(true);
+    } else if (path === '/kontakt' || path === '/kontakt.html' || path === '/kontakt.php') {
+        loadKontaktPage(true);
+    }
 });
 
-function loadHomePage() {
+function loadHomePage(skipPush = false) {
     fetch('../home.html')
         .then(response => response.text())
         .then(html => {
@@ -52,15 +37,19 @@ function loadHomePage() {
                 yearEl.textContent = new Date().getFullYear();
             }
 
-            window.history.pushState({ page: 'home' }, 'Home | InstantLoad Test', '/');
+            if (!skipPush) {
+                window.history.pushState({ page: 'home' }, 'Home | InstantLoad Test', '/');
+            }
+
             document.title = 'Home | InstantLoad Test';
+            setFavicon('/public/favicon.ico');
         })
         .catch(error => {
             console.error('Error loading "Home" page:', error);
         });
-};
+}
 
-function loadFunktionenPage() {
+function loadFunktionenPage(skipPush = false) {
     fetch('../funktionen.html')
         .then(response => response.text())
         .then(html => {
@@ -75,15 +64,19 @@ function loadFunktionenPage() {
                 yearEl.textContent = new Date().getFullYear();
             }
 
-            window.history.pushState({ page: 'funktionen' }, 'Funktionen | InstantLoad Test', '/funktionen');
+            if (!skipPush) {
+                window.history.pushState({ page: 'funktionen' }, 'Funktionen | InstantLoad Test', '/funktionen');
+            }
+
             document.title = 'Funktionen | InstantLoad Test';
+            setFavicon('/public/favicon.ico');
         })
         .catch(error => {
             console.error('Error loading "Funktionen" page:', error);
         });
-};
+}
 
-function loadKontaktPage() {
+function loadKontaktPage(skipPush = false) {
     fetch("../kontakt.html")
         .then(response => response.text())
         .then(html => {
@@ -98,13 +91,27 @@ function loadKontaktPage() {
                 yearEl.textContent = new Date().getFullYear();
             }
 
-            window.history.pushState({ page: 'kontakt' }, 'Kontakt | InstantLoad Test', '/kontakt');
+            if (!skipPush) {
+                window.history.pushState({ page: 'kontakt' }, 'Kontakt | InstantLoad Test', '/kontakt');
+            }
+
             document.title = 'Kontakt | InstantLoad Test';
+            setFavicon('/public/favicon.ico');
         })
         .catch(error => {
             console.error('Error loading "Kontakt" page:', error);
-        });  
-};
+        });
+}
+
+function setFavicon(path) {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+    }
+    link.href = path;
+}
 
 function a2dataRef() {
     const url = "https://www.arion2000.xyz";
