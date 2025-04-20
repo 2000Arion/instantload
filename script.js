@@ -33,7 +33,7 @@ function isModifiedClick(event) {
 
 function loadHomePage(skipPush = false, event) {
     if (event && isModifiedClick(event)) return;
-    if (event) event.preventDefault();
+    event.preventDefault();
     
     fetch('/home.html')
         .then(response => response.text())
@@ -63,7 +63,7 @@ function loadHomePage(skipPush = false, event) {
 
 function loadFunktionenPage(skipPush = false, event) {
     if (event && isModifiedClick(event)) return;
-    if (event) event.preventDefault();
+    event.preventDefault();
     
     fetch('/funktionen.html')
         .then(response => response.text())
@@ -93,7 +93,7 @@ function loadFunktionenPage(skipPush = false, event) {
 
 function loadKontaktPage(skipPush = false, event) {
     if (event && isModifiedClick(event)) return;
-    if (event) event.preventDefault();
+    event.preventDefault();
     
     fetch("/kontakt.html")
         .then(response => response.text())
