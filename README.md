@@ -14,7 +14,7 @@ This [proof-of-concept](https://instantload.pages.dev) simplifies the process of
 - Customizable favicon and page title management for a polished user experience.
 - Modular functions for loading specific pages like `Home`, `Features`, and `Contact`.
 
-Feel free to take a look at the [`script.js`](https://github.com/2000Arion/instantload/blob/main/script.js) file!
+Feel free to take a look at the [`script.js`](script.js) file!
 
 ## Contributing
 
