@@ -26,8 +26,15 @@ document.addEventListener('DOMContentLoaded', function check() {
     }
 });
 
-function loadHomePage(skipPush = false) {
-    event.preventDefault();    
+// Check for Ctrl + click or other modifiers, e.g. to open a page in a new tab
+function isModifiedClick(event) {
+    return event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0;
+}
+
+function loadHomePage(skipPush = false, event) {
+    if (event && isModifiedClick(event)) return;
+    if (event) event.preventDefault();
+    
     fetch('../home.html')
         .then(response => response.text())
         .then(html => {
@@ -54,8 +61,10 @@ function loadHomePage(skipPush = false) {
         });
 }
 
-function loadFunktionenPage(skipPush = false) {
-    event.preventDefault();
+function loadFunktionenPage(skipPush = false, event) {
+    if (event && isModifiedClick(event)) return;
+    if (event) event.preventDefault();
+    
     fetch('../funktionen.html')
         .then(response => response.text())
         .then(html => {
@@ -82,8 +91,10 @@ function loadFunktionenPage(skipPush = false) {
         });
 }
 
-function loadKontaktPage(skipPush = false) {
-    event.preventDefault();
+function loadKontaktPage(skipPush = false, event) {
+    if (event && isModifiedClick(event)) return;
+    if (event) event.preventDefault();
+    
     fetch("../kontakt.html")
         .then(response => response.text())
         .then(html => {
