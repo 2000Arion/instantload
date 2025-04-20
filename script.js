@@ -35,7 +35,7 @@ function loadHomePage(skipPush = false, event) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
     
-    fetch('../home.html')
+    fetch('/home.html')
         .then(response => response.text())
         .then(html => {
             const parser = new DOMParser();
@@ -65,7 +65,7 @@ function loadFunktionenPage(skipPush = false, event) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
     
-    fetch('../funktionen.html')
+    fetch('/funktionen.html')
         .then(response => response.text())
         .then(html => {
             const parser = new DOMParser();
@@ -95,7 +95,7 @@ function loadKontaktPage(skipPush = false, event) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
     
-    fetch("../kontakt.html")
+    fetch("/kontakt.html")
         .then(response => response.text())
         .then(html => {
             const parser = new DOMParser();
