@@ -46,7 +46,7 @@ function loadHomePage(skipPush = false) {
             }
 
             document.title = 'Home | InstantLoad Test';
-            setFavicon('/public/favicon.ico');
+            setFavicon('/favicon.ico');
         })
         .catch(error => {
             console.error('Error loading "Home" page:', error);
@@ -73,7 +73,7 @@ function loadFunktionenPage(skipPush = false) {
             }
 
             document.title = 'Funktionen | InstantLoad Test';
-            setFavicon('/public/favicon.ico');
+            setFavicon('/favicon.ico');
         })
         .catch(error => {
             console.error('Error loading "Funktionen" page:', error);
@@ -100,7 +100,7 @@ function loadKontaktPage(skipPush = false) {
             }
 
             document.title = 'Kontakt | InstantLoad Test';
-            setFavicon('/public/favicon.ico');
+            setFavicon('/favicon.ico');
         })
         .catch(error => {
             console.error('Error loading "Kontakt" page:', error);
