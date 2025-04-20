@@ -1,24 +1,28 @@
 window.addEventListener('popstate', function (event) {
     const path = window.location.pathname;
 
-    if (path === '/' || path === '/index.html' || path === '/index' || path === '/index.php') {
+    if (path === '/' || path === '/index.html' || path === '/index' || path === '/home' || path === '/home.html') {
         loadHomePage(true);
-    } else if (path === '/funktionen' || path === '/funktionen.html' || path === '/funktionen.php') {
+    } else if (path === '/funktionen' || path === '/funktionen.html') {
         loadFunktionenPage(true);
-    } else if (path === '/kontakt' || path === '/kontakt.html' || path === '/kontakt.php') {
+    } else if (path === '/kontakt' || path === '/kontakt.html') {
         loadKontaktPage(true);
+    } else {
+        this.window.location.replace('/');
     }
 });
 
 document.addEventListener('DOMContentLoaded', function check() {
     const path = window.location.pathname;
 
-    if (path === '/' || path === '/index.html' || path === '/index' || path === '/index.php') {
+    if (path === '/' || path === '/index.html' || path === '/index' || path === '/home' || path === '/home.html') {
         loadHomePage(true);
-    } else if (path === '/funktionen' || path === '/funktionen.html' || path === '/funktionen.php') {
+    } else if (path === '/funktionen' || path === '/funktionen.html') {
         loadFunktionenPage(true);
-    } else if (path === '/kontakt' || path === '/kontakt.html' || path === '/kontakt.php') {
+    } else if (path === '/kontakt' || path === '/kontakt.html') {
         loadKontaktPage(true);
+    } else {
+        window.location.replace('/');
     }
 });
 
