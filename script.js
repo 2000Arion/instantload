@@ -2,25 +2,25 @@ window.addEventListener('popstate', function (event) {
     const path = window.location.pathname;
 
     if (path === '/' || path === '/index.html' || path === '/index' || path === '/home' || path === '/home.html') {
-        loadHomePage(true);
+        loadHomePage(null, true);
     } else if (path === '/funktionen' || path === '/funktionen.html') {
-        loadFunktionenPage(true);
+        loadFunktionenPage(null, true);
     } else if (path === '/kontakt' || path === '/kontakt.html') {
-        loadKontaktPage(true);
+        loadKontaktPage(null, true);
     } else {
-        this.window.location.replace('/');
+        window.location.replace('/');
     }
 });
 
-document.addEventListener('DOMContentLoaded', function check() {
+document.addEventListener('DOMContentLoaded', function () {
     const path = window.location.pathname;
 
     if (path === '/' || path === '/index.html' || path === '/index' || path === '/home' || path === '/home.html') {
-        loadHomePage(true);
+        loadHomePage(null, true);
     } else if (path === '/funktionen' || path === '/funktionen.html') {
-        loadFunktionenPage(true);
+        loadFunktionenPage(null, true);
     } else if (path === '/kontakt' || path === '/kontakt.html') {
-        loadKontaktPage(true);
+        loadKontaktPage(null, true);
     } else {
         window.location.replace('/');
     }
@@ -31,10 +31,10 @@ function isModifiedClick(event) {
     return event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0;
 }
 
-function loadHomePage(skipPush = false) {
+function loadHomePage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
-    event.preventDefault();
-    
+    if (event) event.preventDefault();
+
     fetch('/home.html')
         .then(response => response.text())
         .then(html => {
@@ -61,10 +61,10 @@ function loadHomePage(skipPush = false) {
         });
 }
 
-function loadFunktionenPage(skipPush = false) {
+function loadFunktionenPage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
-    event.preventDefault();
-    
+    if (event) event.preventDefault();
+
     fetch('/funktionen.html')
         .then(response => response.text())
         .then(html => {
@@ -91,11 +91,11 @@ function loadFunktionenPage(skipPush = false) {
         });
 }
 
-function loadKontaktPage(skipPush = false) {
+function loadKontaktPage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
-    event.preventDefault();
-    
-    fetch("/kontakt.html")
+    if (event) event.preventDefault();
+
+    fetch('/kontakt.html')
         .then(response => response.text())
         .then(html => {
             const parser = new DOMParser();
