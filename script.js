@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function check() {
 });
 
 function loadHomePage(skipPush = false) {
+    event.preventDefault();    
     fetch('../home.html')
         .then(response => response.text())
         .then(html => {
@@ -54,6 +55,7 @@ function loadHomePage(skipPush = false) {
 }
 
 function loadFunktionenPage(skipPush = false) {
+    event.preventDefault();
     fetch('../funktionen.html')
         .then(response => response.text())
         .then(html => {
@@ -81,6 +83,7 @@ function loadFunktionenPage(skipPush = false) {
 }
 
 function loadKontaktPage(skipPush = false) {
+    event.preventDefault();
     fetch("../kontakt.html")
         .then(response => response.text())
         .then(html => {
