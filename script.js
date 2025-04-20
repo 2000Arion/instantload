@@ -31,7 +31,7 @@ function isModifiedClick(event) {
     return event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0;
 }
 
-function loadHomePage(skipPush = false, event) {
+function loadHomePage(skipPush = false) {
     if (event && isModifiedClick(event)) return;
     event.preventDefault();
     
@@ -61,7 +61,7 @@ function loadHomePage(skipPush = false, event) {
         });
 }
 
-function loadFunktionenPage(skipPush = false, event) {
+function loadFunktionenPage(skipPush = false) {
     if (event && isModifiedClick(event)) return;
     event.preventDefault();
     
@@ -91,7 +91,7 @@ function loadFunktionenPage(skipPush = false, event) {
         });
 }
 
-function loadKontaktPage(skipPush = false, event) {
+function loadKontaktPage(skipPush = false) {
     if (event && isModifiedClick(event)) return;
     event.preventDefault();
     
