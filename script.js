@@ -1,15 +1,5 @@
 let loadingTimeout = null;
 
-function showLoadingBar() {
-    const bar = document.getElementById('loading-bar');
-    if (bar) bar.style.display = 'block';
-}
-
-function hideLoadingBar() {
-    const bar = document.getElementById('loading-bar');
-    if (bar) bar.style.display = 'none';
-}
-
 const pageCache = {};
 
 window.addEventListener('popstate', function (event) {
