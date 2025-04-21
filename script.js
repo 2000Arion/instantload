@@ -1,3 +1,5 @@
+const pageCache = {};
+
 window.addEventListener('popstate', function (event) {
     const path = window.location.pathname;
 
@@ -26,99 +28,65 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Check for Ctrl + click or other modifiers, e.g. to open a page in a new tab
 function isModifiedClick(event) {
     return event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0;
+}
+
+function loadPage(path, title, historyState, skipPush = false) {
+    if (pageCache[path]) {
+        updatePage(pageCache[path], title, historyState, skipPush);
+    } else {
+        fetch(path)
+            .then(response => response.text())
+            .then(html => {
+                pageCache[path] = html;
+                updatePage(html, title, historyState, skipPush);
+            })
+            .catch(error => {
+                console.error(`Error loading "${title}" page:`, error);
+            });
+    }
+}
+
+function updatePage(html, title, historyState, skipPush) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const bodyContent = doc.body.innerHTML;
+
+    document.getElementById('body').innerHTML = bodyContent;
+
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
+    if (!skipPush) {
+        window.history.pushState({ page: historyState }, title, historyState === 'home' ? '/' : '/' + historyState);
+    }
+
+    document.title = title;
+    setFavicon('/favicon.ico');
 }
 
 function loadHomePage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
 
-    fetch('/home.html')
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const bodyContent = doc.body.innerHTML;
-
-            document.getElementById('body').innerHTML = bodyContent;
-
-            const yearEl = document.getElementById('year');
-            if (yearEl) {
-                yearEl.textContent = new Date().getFullYear();
-            }
-
-            if (!skipPush) {
-                window.history.pushState({ page: 'home' }, 'Home | InstantLoad Test', '/');
-            }
-
-            document.title = 'Home | InstantLoad Test';
-            setFavicon('/favicon.ico');
-        })
-        .catch(error => {
-            console.error('Error loading "Home" page:', error);
-        });
+    loadPage('/home.html', 'Home | InstantLoad Test', 'home', skipPush);
 }
 
 function loadFunktionenPage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
 
-    fetch('/funktionen.html')
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const bodyContent = doc.body.innerHTML;
-
-            document.getElementById('body').innerHTML = bodyContent;
-
-            const yearEl = document.getElementById('year');
-            if (yearEl) {
-                yearEl.textContent = new Date().getFullYear();
-            }
-
-            if (!skipPush) {
-                window.history.pushState({ page: 'funktionen' }, 'Funktionen | InstantLoad Test', '/funktionen');
-            }
-
-            document.title = 'Funktionen | InstantLoad Test';
-            setFavicon('/favicon.ico');
-        })
-        .catch(error => {
-            console.error('Error loading "Funktionen" page:', error);
-        });
+    loadPage('/funktionen.html', 'Funktionen | InstantLoad Test', 'funktionen', skipPush);
 }
 
 function loadKontaktPage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
 
-    fetch('/kontakt.html')
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const bodyContent = doc.body.innerHTML;
-
-            document.getElementById('body').innerHTML = bodyContent;
-
-            const yearEl = document.getElementById('year');
-            if (yearEl) {
-                yearEl.textContent = new Date().getFullYear();
-            }
-
-            if (!skipPush) {
-                window.history.pushState({ page: 'kontakt' }, 'Kontakt | InstantLoad Test', '/kontakt');
-            }
-
-            document.title = 'Kontakt | InstantLoad Test';
-            setFavicon('/favicon.ico');
-        })
-        .catch(error => {
-            console.error('Error loading "Kontakt" page:', error);
-        });
+    loadPage('/kontakt.html', 'Kontakt | InstantLoad Test', 'kontakt', skipPush);
 }
 
 function setFavicon(path) {
