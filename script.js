@@ -48,21 +48,20 @@ function loadPage(path, title, historyState, skipPush = false) {
     if (pageCache[path]) {
         updatePage(pageCache[path], title, historyState, skipPush);
     } else {
-        loadingTimeout = setTimeout(showLoadingBar, 200);
+        loadingTimeout = setTimeout(() => NProgress.start(), 200);
 
         fetch(path)
             .then(response => response.text())
             .then(html => {
                 clearTimeout(loadingTimeout);
-                hideLoadingBar();
+                NProgress.done();
 
                 pageCache[path] = html;
                 updatePage(html, title, historyState, skipPush);
             })
             .catch(error => {
                 clearTimeout(loadingTimeout);
-                hideLoadingBar();
-
+                NProgress.done();
                 console.error(`Error loading "${title}" page:`, error);
             });
     }
