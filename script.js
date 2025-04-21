@@ -1,3 +1,15 @@
+let loadingTimeout = null;
+
+function showLoadingBar() {
+    const bar = document.getElementById('loading-bar');
+    if (bar) bar.style.display = 'block';
+}
+
+function hideLoadingBar() {
+    const bar = document.getElementById('loading-bar');
+    if (bar) bar.style.display = 'none';
+}
+
 const pageCache = {};
 
 window.addEventListener('popstate', function (event) {
@@ -36,13 +48,21 @@ function loadPage(path, title, historyState, skipPush = false) {
     if (pageCache[path]) {
         updatePage(pageCache[path], title, historyState, skipPush);
     } else {
+        loadingTimeout = setTimeout(showLoadingBar, 200);
+
         fetch(path)
             .then(response => response.text())
             .then(html => {
+                clearTimeout(loadingTimeout);
+                hideLoadingBar();
+
                 pageCache[path] = html;
                 updatePage(html, title, historyState, skipPush);
             })
             .catch(error => {
+                clearTimeout(loadingTimeout);
+                hideLoadingBar();
+
                 console.error(`Error loading "${title}" page:`, error);
             });
     }
