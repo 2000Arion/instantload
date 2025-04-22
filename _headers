@@ -29,3 +29,7 @@ https://:project.pages.dev/bootstrap/*
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: interest-cohort=()
+
+/_ancms/*
+  Cache-Control: public, max-age=31536000, immutable
+  ETag: "xQigHoWEmH_fade44370a76"
