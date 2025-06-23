@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
         loadFunktionenPage(null, true);
     } else if (path === '/kontakt' || path === '/kontakt.html') {
         loadKontaktPage(null, true);
+    } else if (path === '/_github') {
+        window.location.replace("https://github.com/2000Arion/instantload");
     } else {
         window.location.replace('/');
     }
@@ -81,21 +83,21 @@ function loadHomePage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
 
-    loadPage('/home.html', 'Home | InstantLoad Test', 'home', skipPush);
+    loadPage('/home', 'Home | InstantLoad Test', 'home', skipPush);
 }
 
 function loadFunktionenPage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
 
-    loadPage('/funktionen.html', 'Funktionen | InstantLoad Test', 'funktionen', skipPush);
+    loadPage('/funktionen', 'Funktionen | InstantLoad Test', 'funktionen', skipPush);
 }
 
 function loadKontaktPage(event = null, skipPush = false) {
     if (event && isModifiedClick(event)) return;
     if (event) event.preventDefault();
 
-    loadPage('/kontakt.html', 'Kontakt | InstantLoad Test', 'kontakt', skipPush);
+    loadPage('/kontakt', 'Kontakt | InstantLoad Test', 'kontakt', skipPush);
 }
 
 function setFavicon(path) {
