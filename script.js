@@ -39,6 +39,16 @@ function loadIframeWidget() {
     document.body.appendChild(script);
 }
 
+function loadGlobalCSS(href) {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.type = 'text/css';
+    document.head.appendChild(link);
+}
+
 window.addEventListener('popstate', function (event) {
     const path = window.location.pathname;
 
@@ -56,6 +66,7 @@ window.addEventListener('popstate', function (event) {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    loadGlobalCSS('/_ancms/css/global.css');
     const path = window.location.pathname;
 
     if (path === '/' || path === '/index.html' || path === '/index' || path === '/home' || path === '/home.html') {
