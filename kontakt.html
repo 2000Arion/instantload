@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt | InstantLoad Test</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/_ancms/css/019d1265-a85d-7c3a-85c3-d8e4b52c8db3.min.css">
     <link rel="stylesheet" type="text/css" href="/_ancms/css/ext/bootstrap.min.css">
     <link rel="stylesheet" href="/_ancms/css/ext/nprogress@0.2.0.min.css"/>
     <script src="/_ancms/js/ext/nprogress@0.2.0.min.js"></script>
@@ -39,32 +40,27 @@
             <h1>Kontakt</h1>
             <div style="color:black;" class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1"
                 role="dialog" id="modalSignin">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog" style="max-width: 738px;" role="document">
                     <div class="modal-content rounded-4 shadow">
                         <div class="modal-header p-5 pb-4 border-bottom-0">
                             <h1 class="fw-bold mb-0 fs-2">Sende uns eine Nachricht</h1>
                         </div>
 
                         <div class="modal-body p-5 pt-0">
-                            <form class="" data-bitwarden-watching="1">
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control rounded-3" id="floatingInput"
-                                        placeholder="name@example.com">
-                                    <label for="floatingInput">E-Mail Adresse</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control rounded-3" id="floatingPassword"
-                                        placeholder="Nachricht">
-                                    <label for="floatingInput">Nachricht</label>
-                                </div>
-                                <button id="submit_button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
-                                    onclick="submitMessage()">Senden</button>
-                            </form>
-                            <div id="feedback">
-                                <div class="container mt-5">
-                                    <div class="rounded bg-danger p-4">
-                                        Dies ist noch nicht verfügbar...
-                                    </div>
+                            <div class="w-100">
+                                <div class="iframe-wrapper">
+                                    <div class="loader-bar"></div>
+                                    <p class="loader-text">Einen Moment bitte...</p>
+                                    <iframe 
+                                        id="form-embed"
+                                        src="https://forms.arion2000.xyz/forms/658ffbe6-7645-48ca-b26a-a7e85d8b9a44"
+                                        style="
+                                            border: none;
+                                            width: 100%;
+                                            min-height: 600px;
+                                            display: block;
+                                        ">
+                                    </iframe>
                                 </div>
                             </div>
                         </div>
@@ -78,6 +74,7 @@
             <p class="fixed-bottom" style="cursor: pointer;" onclick="a2dataRef()">a2data - <span id="year"></span></p>
         </footer>
     </div>
+    <script src="/_ancms/js/019d125c-7182-79cf-9953-18131e4cbebf.min.js"></script>
     <script src="/_ancms/js/ext/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 
