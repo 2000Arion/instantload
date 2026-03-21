@@ -2,6 +2,43 @@ let loadingTimeout = null;
 
 const pageCache = {};
 
+// Iframe loading for contact form
+function setupIframeLoader() {
+    const iframe = document.getElementById('form-embed');
+    if (!iframe) return;
+
+    const wrapper = iframe.closest('.iframe-wrapper');
+    if (!wrapper) return;
+
+    wrapper.classList.remove('loaded');
+
+    const onLoad = () => {
+        wrapper.classList.add('loaded');
+    };
+
+    iframe.removeEventListener('load', onLoad);
+    iframe.addEventListener('load', onLoad, { once: true });
+}
+
+function loadIframeWidget() {
+    if (window.initEmbed) {
+        initEmbed('form-embed', { autoResize: true });
+        return;
+    }
+
+    if (document.getElementById('iframe-widget-script')) return;
+
+    const script = document.createElement('script');
+    script.id = 'iframe-widget-script';
+    script.src = 'https://forms.arion2000.xyz/widgets/iframe.min.js';
+    script.onload = () => {
+        if (window.initEmbed) {
+            initEmbed('form-embed', { autoResize: true });
+        }
+    };
+    document.body.appendChild(script);
+}
+
 window.addEventListener('popstate', function (event) {
     const path = window.location.pathname;
 
@@ -11,6 +48,8 @@ window.addEventListener('popstate', function (event) {
         loadFunktionenPage(null, true);
     } else if (path === '/kontakt' || path === '/kontakt.html') {
         loadKontaktPage(null, true);
+        setupIframeLoader();
+        loadIframeWidget();
     } else {
         window.location.replace('/');
     }
@@ -25,32 +64,17 @@ document.addEventListener('DOMContentLoaded', function () {
         loadFunktionenPage(null, true);
     } else if (path === '/kontakt' || path === '/kontakt.html') {
         loadKontaktPage(null, true);
+        setupIframeLoader();
+        loadIframeWidget();
     } else if (path === '/_github') {
         window.location.replace("https://github.com/2000Arion/instantload");
     } else {
         window.location.replace('/');
     }
-
-    setupIframeLoader();
 });
 
 function isModifiedClick(event) {
     return event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0;
-}
-
-// Iframe loading for contact form
-function setupIframeLoader() {
-    const iframe = document.getElementById('form-embed');
-    if (!iframe) return;
-
-    const wrapper = iframe.closest('.iframe-wrapper');
-    if (!wrapper) return;
-
-    wrapper.classList.remove('loaded');
-
-    iframe.addEventListener('load', () => {
-        wrapper.classList.add('loaded');
-    });
 }
 
 function loadPage(path, title, historyState, skipPush = false) {
@@ -95,7 +119,10 @@ function updatePage(html, title, historyState, skipPush) {
     document.title = title;
     setFavicon('/favicon.ico');
 
-    setupIframeLoader();
+    if (historyState === 'kontakt') {
+        setupIframeLoader();
+        loadIframeWidget();
+    }
 }
 
 function loadHomePage(event = null, skipPush = false) {
