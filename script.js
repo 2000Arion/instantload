@@ -30,10 +30,27 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         window.location.replace('/');
     }
+
+    setupIframeLoader();
 });
 
 function isModifiedClick(event) {
     return event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0;
+}
+
+// Iframe loading for contact form
+function setupIframeLoader() {
+    const iframe = document.getElementById('form-embed');
+    if (!iframe) return;
+
+    const wrapper = iframe.closest('.iframe-wrapper');
+    if (!wrapper) return;
+
+    wrapper.classList.remove('loaded');
+
+    iframe.addEventListener('load', () => {
+        wrapper.classList.add('loaded');
+    });
 }
 
 function loadPage(path, title, historyState, skipPush = false) {
@@ -77,6 +94,8 @@ function updatePage(html, title, historyState, skipPush) {
 
     document.title = title;
     setFavicon('/favicon.ico');
+
+    setupIframeLoader();
 }
 
 function loadHomePage(event = null, skipPush = false) {
